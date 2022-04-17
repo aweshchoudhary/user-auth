@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,7 +6,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login, currentUser } = useAuth();
+  const { login, currentUser, authError } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
