@@ -1,0 +1,119 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: 0.4s all ease-in-out;
+  border: none;
+  outline: none;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  background: var(--primary);
+  color: white;
+  width: fit-content;
+  text-decoration: none;
+  margin-right: 10px;
+  display: block;
+}
+.btn:hover {
+  background: var(--hover);
+}
+
+:root {
+  --border: 1px solid rgba(0, 0, 0, 0.205);
+  --primary: rgb(26, 26, 212);
+  --hover: rgb(18, 18, 155);
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  height: 80%;
+  width: 50%;
+  border: var(--border);
+  padding: 30px;
+  position: relative;
+}
+
+.card .top {
+  font-size: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: var(--border);
+}
+
+.card .body .item {
+  width: 100%;
+  padding: 10px;
+  border: var(--border);
+  margin: 20px 0;
+}
+
+.card .body .item input {
+  width: 100%;
+  font-size: 14px;
+}
+
+.card .bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+
+.card .bottom .btns .btn {
+  margin-top: 20px;
+}
+.card .bottom .btns {
+  display: flex;
+}
+
+.user {
+  height: 80%;
+  width: 50%;
+  border: var(--border);
+  padding: 30px;
+  position: relative;
+}
+
+.user .top h1 {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: var(--border);
+}
+.user .body .user-email {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.user .bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+.user .bottom .btns {
+  display: flex;
+}
+
+.error {
+  color: red;
+  font-size: 20px;
+}
