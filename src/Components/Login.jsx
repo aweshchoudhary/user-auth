@@ -25,7 +25,6 @@ const Login = () => {
       setError(authError);
     }
   };
-  console.log(currentUser);
 
   return (
     <div className="card">

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "../Api/base";
 
 const AuthContext = createContext();
@@ -9,16 +9,18 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [authError, setAuthError] = useState(null);
-  const localUser = JSON.parse(localStorage.get("user"));
-  if (localUser) {
-    setCurrentUser(localUser);
-  }
+  const localUser = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {
+    if (localUser) {
+      setCurrentUser(localUser);
+    }
+  }, [localUser]);
   const register = async (fullName, email, password) => {
     const user = await axios
       .post("/register", { fullName, email, password })
       .then(() => {
-        setCurrentUser(user);
-        localStorage.set("user", JSON.stringify(user));
+        setCurrentUser(user.data);
+        localStorage.setItem("user", JSON.stringify(user.data));
       })
       .catch((err) => {
         setAuthError(err);
@@ -26,13 +28,21 @@ export const AuthProvider = ({ children }) => {
   };
   const login = async (email, password) => {
     const user = await axios.post("/login", { email, password });
-    setCurrentUser(user);
-    localStorage.set("user", JSON.stringify(user));
+    setCurrentUser(user.data);
+    localStorage.setItem("user", JSON.stringify(user.data));
   };
+
+  const deleteAccount = async (email, password) => {
+    const res = await axios.post("/delete", { email, password });
+    setCurrentUser(res);
+  };
+
   const value = {
     currentUser,
+    authError,
     register,
     login,
+    deleteAccount
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
